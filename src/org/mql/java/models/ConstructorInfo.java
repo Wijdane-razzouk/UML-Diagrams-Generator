@@ -1,4 +1,4 @@
-package org.mql.java;
+package org.mql.java.models;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
@@ -19,5 +19,11 @@ public class ConstructorInfo {
 	public void setName(Constructor<?> constructor) {
 		this.constructor = constructor;
 	}
+
+	@Override
+	public String toString() {
+		return " "+ constructor;
+	}
+	
 	
 }

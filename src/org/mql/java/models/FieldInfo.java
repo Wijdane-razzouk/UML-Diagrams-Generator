@@ -1,4 +1,4 @@
-package org.mql.java;
+package org.mql.java.models;
 
 public class FieldInfo {
 	private String modifier;
@@ -28,7 +28,11 @@ public class FieldInfo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	@Override
+	public String toString() {
+	    return modifier + " " + type + " " + name;
+	}
+
 	
 
 }
