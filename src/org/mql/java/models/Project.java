@@ -7,22 +7,18 @@ import java.util.Vector;
 
 public class Project {
 	private String name;
+	private String path;
 	private List<PackageData> packages;
 
 	
-	public Project(String name) {
+	public Project(String name,String path) {
 		super();
 		this.name = name;
-//		this.packages = ExplorerProjet.allpackages;
+		this.path = path;
 		this.packages = new Vector<>();
 	}
 
-//
-//	public void addPackage() {
-//		for (String pack : packages) {
-//			PackageData pk= new PackageData(pack);
-//		}
-//	}
+
 	public void addPackage(PackageData packageinfo) {
 		packages.add(packageinfo);
 	}
@@ -39,6 +35,16 @@ public class Project {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+	public String getPath() {
+		return path;
+	}
+
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 

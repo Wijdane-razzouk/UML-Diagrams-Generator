@@ -60,6 +60,26 @@ public class PackageData {
 		public List<AnnotationData> getAnnotations() {
 			return annotations;
 		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public void setClasses(List<Classe> classes) {
+			this.classes = classes;
+		}
+
+		public void setInterfaces(List<InterfaceData> interfaces) {
+			this.interfaces = interfaces;
+		}
+
+		public void setEnums(List<EnumerationData> enums) {
+			this.enums = enums;
+		}
+
+		public void setAnnotations(List<AnnotationData> annotations) {
+			this.annotations = annotations;
+		}
 	    
 
 }

@@ -31,7 +31,6 @@ public class RelationAnalyse {
     }
 
     private void analyzeFieldsAndMethods(Classe clazz) {
-
         for (FieldInfo field : clazz.getFields()) {
             Class<?> fieldType;
             try {
@@ -42,11 +41,10 @@ public class RelationAnalyse {
             }
         }
 
-        // Analyser les méthodes pour l'utilisation
+    
         for (MethodInfo method : clazz.getMethods()) {
             for (Type paramType : method.getParameterTypes()) {
-                // Utiliser paramType pour obtenir la classe
-                Class<?> paramClass = (Class<?>) paramType; // Assurez-vous que c'est un type valide
+                Class<?> paramClass = (Class<?>) paramType; 
                 relationClasse.addRelation(clazz.getJavaClass(), paramClass, RelationShipType.USAGE);
             }
         }

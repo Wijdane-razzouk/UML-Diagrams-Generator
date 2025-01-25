@@ -16,7 +16,7 @@ import org.mql.java.models.PackageData;
 import org.mql.java.models.Project;
 
 public class ExplorerProjet {
-
+	
 	public static List<Class<?>> allclasses = new ArrayList<>();
 
 	public static List<Class<?>> allinterfaces = new ArrayList<>();
@@ -25,6 +25,17 @@ public class ExplorerProjet {
 
 	public static List<String> allpackages = new ArrayList<>();
 
+	
+	public static String extractProjectNameUsingSplit(String path) {
+        String[] segments = path.split("\\\\");
+        
+        if (segments.length >= 2) {
+            return segments[segments.length - 2];
+        } else {
+            throw new IllegalArgumentException("Le chemin ne contient pas suffisamment de segments.");
+        }
+    }
+	
 	public static List<File> extractFoldersfromproject(String path) {
 		File directory = new File(path);
 		File[] files = directory.listFiles();
@@ -40,7 +51,7 @@ public class ExplorerProjet {
 	}
 
 	public static List<String> extractPackages(String path, String packagePath) {
-		Project project = new Project("project");
+		Project project=new Project(extractProjectNameUsingSplit(path), packagePath);
 		File dir = new File(packagePath);
 		File[] content = dir.listFiles();
 		if (content != null) {

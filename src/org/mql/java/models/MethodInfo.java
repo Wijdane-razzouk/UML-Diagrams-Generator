@@ -1,5 +1,6 @@
 package org.mql.java.models;
 
+import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 
@@ -16,6 +17,8 @@ public class MethodInfo {
 		this.modifier = string;
 		this.parameterTypes = types;
 	}
+
+	
 
 	public String getName() {
 		return name;

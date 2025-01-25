@@ -1,0 +1,225 @@
+<project name="p03_reflection_and_annotations" path="C:\\Users\\hp\\MQL\\eclipse-workspace\\p03_reflection_and_annotations\\bin">
+    <package name="org.mql.java.reflection">
+        <class name="AnnotationsExamples" modifiers="public" extends="javax.swing.JFrame">
+            <method modifiers="public static" name="main" returnType="void">
+                <parameter name="args" type="java.lang.String[]"/>
+            </method>
+            <method modifiers="public" name="exp03" returnType="void"/>
+            <method modifiers="public" name="exp01" returnType="void"/>
+            <method modifiers="public" name="exp02" returnType="void"/>
+            <constructor modifiers="public" name="AnnotationsExamples"/>
+            <relationships>
+                <relationship source="AnnotationsExamples" target="javax.swing.JFrame" type="inheritance"/>
+            </relationships>
+        </class>
+        
+        <class name="Examples" modifiers="public" extends="java.lang.Object">
+            <method modifiers="public static" name="main" returnType="void">
+                <parameter name="args" type="java.lang.String[]"/>
+            </method>
+            <method modifiers="public" name="scan" returnType="void">
+                <parameter name="obj" type="java.lang.Object"/>
+            </method>
+            <method modifiers="public" name="exp03" returnType="void"/>
+            <method modifiers="public" name="exp01" returnType="void"/>
+            <method modifiers="public" name="exp02" returnType="void"/>
+            <constructor modifiers="public" name="Examples"/>
+            <relationships>
+                <relationship source="Examples" target="java.lang.Object" type="inheritance"/>
+            </relationships>
+        </class>
+
+        <class name="FormGenerator" modifiers="public" extends="java.lang.Object">
+            <method modifiers="public static" name="generate" returnType="org.mql.java.reflection.ui.Form">
+                <parameter name="obj" type="java.lang.Object"/>
+            </method>
+            <constructor modifiers="public" name="FormGenerator"/>
+            <relationships>
+                <relationship source="FormGenerator" target="java.lang.Object" type="inheritance"/>
+            </relationships>
+        </class>
+
+        <class name="PackageExplorer" modifiers="public" extends="java.lang.Object">
+            <method modifiers="public static" name="main" returnType="void">
+                <parameter name="args" type="java.lang.String[]"/>
+            </method>
+            <method modifiers="public" name="scan" returnType="void">
+                <parameter name="path" type="java.lang.String"/>
+            </method>
+            <constructor modifiers="public" name="PackageExplorer">
+                <throws type="java.lang.ClassNotFoundException"/>
+            </constructor>
+            <relationships>
+                <relationship source="PackageExplorer" target="java.lang.Object" type="inheritance"/>
+            </relationships>
+        </class>
+
+        <class name="PackageExplorer1" modifiers="public" extends="java.lang.Object">
+            <method modifiers="public static" name="main" returnType="void">
+                <parameter name="args" type="java.lang.String[]"/>
+            </method>
+            <method modifiers="public" name="scan" returnType="java.util.Vector">
+                <parameter name="path" type="java.lang.String"/>
+            </method>
+            <method modifiers="public" name="testreflection" returnType="void"/>
+            <constructor modifiers="public" name="PackageExplorer1">
+                <throws type="java.lang.ClassNotFoundException"/>
+            </constructor>
+            <relationships>
+                <relationship source="PackageExplorer1" target="java.lang.Object" type="inheritance"/>
+            </relationships>
+        </class>
+    </package>
+
+    <package name="org.mql.java.reflection.annotations">
+        <class name="Controller" modifiers="public" type="annotation">
+            <field modifiers="public abstract" name="value" type="java.lang.String"/>
+            <relationship source="Controller" target="Target" type="META_ANNOTATION"/>
+            <relationship source="Controller" target="Retention" type="META_ANNOTATION"/>
+            <relationships>
+                <relationship source="Controller" target="Target" type="META_ANNOTATION"/>
+                <relationship source="Controller" target="Retention" type="META_ANNOTATION"/>
+            </relationships>
+        </class>
+        
+        <class name="Form" modifiers="public" type="annotation">
+            <field modifiers="public abstract" name="labelSize" type="int"/>
+            <field modifiers="public abstract" name="title" type="java.lang.String"/>
+            <relationship source="Form" target="Target" type="META_ANNOTATION"/>
+            <relationship source="Form" target="Retention" type="META_ANNOTATION"/>
+            <relationships>
+                <relationship source="Form" target="Target" type="META_ANNOTATION"/>
+                <relationship source="Form" target="Retention" type="META_ANNOTATION"/>
+            </relationships>
+        </class>
+
+        <class name="TextField" modifiers="public" type="annotation">
+            <field modifiers="public abstract" name="size" type="int"/>
+            <field modifiers="public abstract" name="label" type="java.lang.String"/>
+            <relationship source="TextField" target="Target" type="META_ANNOTATION"/>
+            <relationship source="TextField" target="Retention" type="META_ANNOTATION"/>
+            <relationships>
+                <relationship source="TextField" target="Target" type="META_ANNOTATION"/>
+                <relationship source="TextField" target="Retention" type="META_ANNOTATION"/>
+            </relationships>
+        </class>
+    </package>
+
+    <package name="org.mql.java.reflection.dao">
+        <class name="MySQLDataSource" modifiers="public" implements="org.mql.java.reflection.dao.DataSource">
+            <method modifiers="public" name="getConnection" returnType="java.sql.Connection"/>
+            <constructor modifiers="public" name="MySQLDataSource"/>
+            <relationships>
+                <relationship source="MySQLDataSource" target="org.mql.java.reflection.dao.DataSource" type="implementation"/>
+            </relationships>
+        </class>
+
+        <interface name="DataSource">
+            <method modifiers="public abstract" name="getConnection" returnType="java.sql.Connection"/>
+            <relationships>
+                <relationship source="DataSource" target="java.sql.Connection" type="uses"/>
+            </relationships>
+        </interface>
+    </package>
+
+    <package name="org.mql.java.reflection.enumaration">
+        <class name="Examples" modifiers="public" extends="java.lang.Object">
+            <method modifiers="public static" name="main" returnType="void">
+                <parameter name="args" type="java.lang.String[]"/>
+            </method>
+            <method modifiers="public" name="exp01" returnType="void"/>
+            <constructor modifiers="public" name="Examples"/>
+            <relationships>
+                <relationship source="Examples" target="java.lang.Object" type="inheritance"/>
+            </relationships>
+        </class>
+
+        <enum name="BasicColor" modifiers="public">
+            <field name="BLACK"/>
+            <field name="WHITE"/>
+            <field name="BLUE"/>
+            <field name="GREEN"/>
+            <field name="CYAN"/>
+            <field name="RED"/>
+            <field name="YELLOW"/>
+            <method modifiers="public static" name="values" returnType="BasicColor[]"/>
+            <method modifiers="public static" name="valueOf" returnType="BasicColor">
+                <parameter name="name" type="java.lang.String"/>
+            </method>
+            <method modifiers="public" name="getValue" returnType="java.awt.Color"/>
+            <method modifiers="public" name="setValue" returnType="void">
+                <parameter name="color" type="java.awt.Color"/>
+            </method>
+            <relationships>
+                <relationship source="BasicColor" target="java.awt.Color" type="uses"/>
+            </relationships>
+        </enum>
+    </package>
+
+    <package name="org.mql.java.reflection.ui">
+        <class name="Form" modifiers="public" extends="javax.swing.JPanel">
+            <method modifiers="public" name="add" returnType="void">
+                <parameter name="label" type="java.lang.String"/>
+                <parameter name="size" type="int"/>
+            </method>
+            <constructor modifiers="public" name="Form">
+                <parameter name="title" type="java.lang.String"/>
+                <parameter name="labelSize" type="int"/>
+            </constructor>
+            <relationships>
+                <relationship source="Form" target="javax.swing.JPanel" type="inheritance"/>
+            </relationships>
+        </class>
+
+        <class name="Menu" modifiers="public" extends="javax.swing.JMenuBar">
+            <method modifiers="public" name="add" returnType="void">
+                <parameter name="obj" type="java.lang.Object"/>
+            </method>
+            <method modifiers="public" name="add" returnType="void">
+                <parameter name="path" type="java.lang.String[]"/>
+            </method>
+            <constructor modifiers="public" name="Menu"/>
+            <constructor modifiers="public" name="Menu">
+                <parameter name="path" type="java.lang.String[][]"/>
+            </constructor>
+            <relationships>
+                <relationship source="Menu" target="javax.swing.JMenuBar" type="inheritance"/>
+            </relationships>
+        </class>
+
+        <class name="StringMapper" modifiers="public" extends="java.lang.Object">
+            <method modifiers="public static" name="toString" returnType="java.lang.String">
+                <parameter name="obj" type="java.lang.Object"/>
+            </method>
+            <constructor modifiers="public" name="StringMapper"/>
+            <relationships>
+                <relationship source="StringMapper" target="java.lang.Object" type="inheritance"/>
+            </relationships>
+        </class>
+
+        <class name="TestMenu" modifiers="public" extends="javax.swing.JFrame">
+            <method modifiers="public static" name="main" returnType="void">
+                <parameter name="args" type="java.lang.String[]"/>
+            </method>
+            <method modifiers="public" name="exp01" returnType="void"/>
+            <constructor modifiers="public" name="TestMenu"/>
+            <relationships>
+                <relationship source="TestMenu" target="javax.swing.JFrame" type="inheritance"/>
+            </relationships>
+        </class>
+    </package>
+
+    <package name="org.mql.java.serialisation">
+        <class name="Test" modifiers="public" extends="java.lang.Object">
+            <method modifiers="public static" name="main" returnType="void">
+                <parameter name="args" type="java.lang.String[]"/>
+            </method>
+            <method modifiers="public" name="exp02" returnType="void"/>
+            <method modifiers="public" name="exp01" returnType="void"/>
+            <constructor modifiers="public" name="Test"/>
+            <relationships>
+                <relationship source="Test" target="java.lang.Object" type="inheritance"/>
+            </relationships>
+        </class>
+    </package>
+</project>

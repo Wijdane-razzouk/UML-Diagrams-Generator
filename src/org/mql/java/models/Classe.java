@@ -9,6 +9,8 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mql.java.relations.RelationShip;
+
 public class Classe {
     private Class<?> clazz;
     private List<FieldInfo> fields;
@@ -17,6 +19,7 @@ public class Classe {
     private List<Class<?>> interfaces;
     private List<ConstructorInfo> constructors;
     private List<AnnotationData> annotations;
+    private List<RelationShip> relationships;
 
     public Classe(Class<?> clazz) {
         this.clazz = clazz;
@@ -25,6 +28,7 @@ public class Classe {
         this.interfaces = new ArrayList<>();
         this.constructors = new ArrayList<>();
         this.annotations= new ArrayList<>();
+        this.relationships = new ArrayList<>();
         extractClassDetails();
     }
 
@@ -74,10 +78,11 @@ public class Classe {
         }
     }
     private void extractAnnotations() {
-    	
-    	for (Annotation annotation : clazz.getDeclaredAnnotations()) {
-			annotations.add(new AnnotationData(annotation.getClass()));
-		}
+        System.out.println("Extracting annotations from class: " + clazz.getName());
+        for (Annotation annotation : clazz.getDeclaredAnnotations()) {
+            System.out.println("Found annotation: " + annotation.annotationType().getSimpleName());
+            annotations.add(new AnnotationData(annotation.annotationType()));
+        }
     }
     public Class<?> getJavaClass() {
         return clazz;
@@ -87,7 +92,12 @@ public class Classe {
         return clazz.getName();
     }
 
-    public List<FieldInfo> getFields() {
+    public String getModifiers() {
+		return Modifier.toString(clazz.getModifiers());
+	}
+
+
+	public List<FieldInfo> getFields() {
         return fields;
     }
 
@@ -108,5 +118,12 @@ public class Classe {
     }
     public List<AnnotationData> getAnnotations() {
         return annotations;
+    }
+    public List<RelationShip> getRelationships() {
+        return relationships;
+    }
+
+    public void addRelationship(RelationShip relationship) {
+        this.relationships.add(relationship);
     }
 }

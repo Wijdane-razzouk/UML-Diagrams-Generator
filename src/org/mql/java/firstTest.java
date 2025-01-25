@@ -10,6 +10,7 @@ import java.lang.reflect.Constructor;
 import java.util.List;
 
 import org.mql.java.models.PackageData;
+import org.mql.java.models.Project;
 import org.mql.java.relations.RelationClasse;
 import org.mql.java.relations.RelationShipType;
 import org.mql.java.models.AnnotationData;
@@ -24,12 +25,16 @@ import org.mql.java.models.InterfaceData;
 public class firstTest {
     public static void main(String[] args) throws ClassNotFoundException, IOException {
         String path = "C:\\Users\\hp\\MQL\\eclipse-workspace\\p03_reflection_and_annotations\\bin";
+        String projectName = ExplorerProjet.extractProjectNameUsingSplit(path);
+        
+        System.out.println("Nom du projet : " + projectName);
         List<File> folders = ExplorerProjet.extractFoldersfromproject(path);
 
         RelationClasse relationManager = new RelationClasse();
-
+        
         for (File folder : folders) {
             System.out.println("Folder: " + folder.getName());
+            Project project=new Project(projectName,path);
             List<String> packages = ExplorerProjet.extractPackages(path, folder.getAbsolutePath());
 
             for (String packageName : packages) {
@@ -78,8 +83,7 @@ public class firstTest {
           else {
             System.out.print("extends: java.lang.Object ");
         }
-
-        // Afficher les interfaces implémentées
+        
         Class<?>[] interfaces = clazz.getInterfaces();
         if (interfaces.length > 0) {
             System.out.print("  implements: ");
@@ -94,24 +98,6 @@ public class firstTest {
             System.out.println("");
         }
 
-        // Afficher les annotations
-//        Annotation[] annotations = clazz.getAnnotations();
-//        if (annotations.length > 0) {
-//            System.out.println("Annotations: ");
-//            for (int i = 0; i < annotations.length; i++) {
-//                System.out.print(annotations[i].annotationType().getName());
-//                if (i < annotations.length - 1) {
-//                    System.out.print(", ");
-//                }
-//            }
-//            System.out.println();
-//        } else {
-//            System.out.println("Annotations: None");
-//        }
-        
-        for (AnnotationData annotation : classData.getAnnotations()) {
-			annotation.getName();
-		}
         // Afficher les agrégations
         System.out.println("Aggregates: ");
         for (FieldInfo field : classData.getFields()) {
@@ -127,7 +113,12 @@ public class firstTest {
         }
 
         // Afficher le contenu
-       
+
+        System.out.println("  Annotations:");
+        for (AnnotationData annotation : classData.getAnnotations()) {
+        	displayAnnotationDetails(annotation);
+		}
+        
         System.out.println("  Fields:");
         for (FieldInfo field : classData.getFields()) {
             System.out.println("    - " + field);
@@ -171,11 +162,15 @@ public class firstTest {
     }
 
     private static void displayAnnotationDetails(AnnotationData annotationData) {
-        System.out.println("=========================================================");
-        Class<?> annotationClass = annotationData.getJavaClass();
-        System.out.println("Annotation: " + annotationClass.getName());
-        annotationData.printInfo();
-        // Afficher les éléments de l'annotation
+    	System.out.println("=========================================================");
+        System.out.println("Annotation: " + annotationData.getName());
+        System.out.println("Modifiers: " + annotationData.getModifiers());
+        System.out.println("Meta-Annotations: " + annotationData.getMetaAnnotations());
+        System.out.println("Elements:");
+        for (MethodInfo element : annotationData.getElements()) {
+            System.out.println("  - " + element);
+        }
+     
         
     }
 
